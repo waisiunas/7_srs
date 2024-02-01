@@ -6,15 +6,15 @@ if (!isset($_SESSION['user'])) {
     header('location: ./');
 }
 
-$sql = "SELECT * FROM `courses`";
+$sql = "SELECT * FROM `students`";
 $result = $conn->query($sql);
-$courses = $result->fetch_all(MYSQLI_ASSOC);
+$students = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <?php
-$title = "Courses";
+$title = "Students";
 require_once './partials/head.php';
 ?>
 
@@ -30,10 +30,10 @@ require_once './partials/head.php';
 
                     <div class="row mb-2">
                         <div class="col-6">
-                            <h3>Courses</h3>
+                            <h3>Students</h3>
                         </div>
                         <div class="col-6 text-end">
-                            <a href="./add-course.php" class="btn btn-outline-primary">Add Course</a>
+                            <a href="./add-student.php" class="btn btn-outline-primary">Add Student</a>
                         </div>
                     </div>
 
@@ -48,7 +48,7 @@ require_once './partials/head.php';
                                                 <tr>
                                                     <th>Sr. No.</th>
                                                     <th>Name</th>
-                                                    <th>Duration</th>
+                                                    <th>Reg. No.</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -56,14 +56,14 @@ require_once './partials/head.php';
                                             <tbody>
                                                 <?php
                                                 $sr = 1;
-                                                foreach ($courses as $course) { ?>
+                                                foreach ($students as $student) { ?>
                                                     <tr>
                                                         <td><?php echo $sr++; ?></td>
-                                                        <td><?php echo $course['name'] ?></td>
-                                                        <td><?php echo $course['duration'] ?></td>
+                                                        <td><?php echo $student['name'] ?></td>
+                                                        <td><?php echo $student['reg_no'] ?></td>
                                                         <td>
-                                                            <a href="./edit-course.php?id=<?php echo $course['id'] ?>" class="btn btn-primary">Edit</a>
-                                                            <a href="./delete-course.php?id=<?php echo $course['id'] ?>" class="btn btn-danger">Delete</a>
+                                                            <a href="./edit-student.php?id=<?php echo $student['id'] ?>" class="btn btn-primary">Edit</a>
+                                                            <a href="./delete-student.php?id=<?php echo $student['id'] ?>" class="btn btn-danger">Delete</a>
                                                         </td>
                                                     </tr>
                                                 <?php
